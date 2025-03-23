@@ -56,7 +56,7 @@ class App() {
 class MainWindow(val app: App) : JFrame(), ActionListener {
 
     // Fields to hold the UI elements
-    private lateinit var greetingLabel: JLabel
+    private lateinit var infoLabel: JLabel
     private lateinit var helloButton: JButton
 
     /**
@@ -68,6 +68,8 @@ class MainWindow(val app: App) : JFrame(), ActionListener {
 
         setLocationRelativeTo(null)     // Centre the window
         isVisible = true                // Make it visible
+
+        updateView()                    // Initialise view with model data
     }
 
     /**
@@ -89,11 +91,11 @@ class MainWindow(val app: App) : JFrame(), ActionListener {
     private fun addControls() {
         val baseFont = Font(Font.SANS_SERIF, Font.PLAIN, 36)
 
-        greetingLabel = JLabel("Hello, World!")
-        greetingLabel.horizontalAlignment = SwingConstants.CENTER
-        greetingLabel.bounds = Rectangle(50, 50, 500, 100)
-        greetingLabel.font = baseFont
-        add(greetingLabel)
+        infoLabel = JLabel("INFO HERE")
+        infoLabel.horizontalAlignment = SwingConstants.CENTER
+        infoLabel.bounds = Rectangle(50, 50, 500, 100)
+        infoLabel.font = baseFont
+        add(infoLabel)
 
         helloButton = JButton("Click Me!")
         helloButton.bounds = Rectangle(50,200,500,100)
@@ -109,11 +111,11 @@ class MainWindow(val app: App) : JFrame(), ActionListener {
      */
     fun updateView() {
         if (app.clicks == app.MAX_CLICKS) {
-            greetingLabel.text = "Max clicks reached!"
+            infoLabel.text = "Max clicks reached!"
             helloButton.isEnabled = false
         }
         else {
-            greetingLabel.text = "You clicked ${app.clicks} times"
+            infoLabel.text = "You clicked ${app.clicks} times"
         }
     }
 
